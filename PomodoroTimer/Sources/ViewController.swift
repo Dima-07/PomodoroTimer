@@ -21,6 +21,17 @@ class ViewController: UIViewController {
         
         return timerLabel
     }()
+    
+    private lazy var playPauseButton: UIButton = {
+        let playPauseButton = UIButton()
+        playPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        playPauseButton.tintColor = .red
+        let configuration = UIImage.SymbolConfiguration(pointSize: 40)
+        playPauseButton.setPreferredSymbolConfiguration(configuration, forImageIn: .normal)
+        playPauseButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        return playPauseButton
+    }()
 
     // MARK: - Lifecycle
     
@@ -34,12 +45,16 @@ class ViewController: UIViewController {
     
     private func setupHierarchy() {
         view.addSubview(timerLabel)
+        view.addSubview(playPauseButton)
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
             timerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            timerLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50)
+            timerLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            
+            playPauseButton.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant: 50),
+            playPauseButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
